@@ -1,0 +1,14 @@
+Package: ipeRds
+Type: Package
+Title: Automagically Download Labelled .rds IPEDS Files
+Version: 0.1.0
+Author: Matt Capaldi
+Maintainer: Matt Capaldi <matt.capaldi@outlook.com>
+Description: More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
+License: MIT License
+Encoding: UTF-8
+LazyData: true
+Imports:
+  tidyverse
+  labelled
