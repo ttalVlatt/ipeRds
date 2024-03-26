@@ -6,3 +6,5 @@
 *.zip
 *.csv
 *.do
+*.xlsx
+.DS_Store

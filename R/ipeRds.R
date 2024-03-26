@@ -18,6 +18,12 @@
 
 # file_selector <- function(files = files, years = years) { }
 
+# idea: have .rds list of valid file names for IPEDS
+# create all combinations of file type and year (plus 1819 year)
+# but then keep only those that match the valid list
+
+# valid_files <- readr::read_rds(valid-files.rds)
+
 selected_files <- c(
   "GR2020_PELL_SSL",
   "HD2017",
@@ -29,7 +35,7 @@ selected_files <- c(
   "S2017_SIS",
   "IC2017_AY",
   "EF2017A_DIST"
-  )
+)
 
 ## ---------------------------
 ##' [do_labeler function]
@@ -65,8 +71,12 @@ for(i in selected_files) {
 
     if(!file.exists(paste0(j, "/", i, ".zip"))) {
 
+      extension <- dplyr::case_when(j == "zip-data" ~ "_Data_Stata.zip",
+                                    j == "zip-do-files" ~ "_Stata.zip",
+                                    j == "zip-dictionaries" ~ "_Dict.zip")
+
       print(paste("Downloading", i, "to", j))
-      url <- paste0("https://nces.ed.gov/ipeds/datacenter/data/", i, "_Data_Stata.zip")
+      url <- paste0("https://nces.ed.gov/ipeds/datacenter/data/", i, extension)
       destination <- paste0(j, "/", i, ".zip")
       download.file(url, destination)
       Sys.sleep(3)
